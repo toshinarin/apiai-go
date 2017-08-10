@@ -19,7 +19,7 @@ func (c *ApiClient) Tts(text string) (string, error) {
 	req.Header.Set("Authorization", "Bearer "+c.config.Token)
 	req.Header.Set("Accept-Language", c.config.SpeechLang)
 
-	httpClient := http.DefaultClient
+	httpClient := c.config.HTTPClient
 	resp, err := httpClient.Do(req)
 	if err != nil {
 		return "", err

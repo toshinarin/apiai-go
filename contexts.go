@@ -25,7 +25,7 @@ func (c *ApiClient) GetContexts(sessionId string) ([]Context, error) {
 	req.Header.Set("Content-type", "application/json; charset=utf-8")
 	req.Header.Set("Authorization", "Bearer "+c.config.Token)
 
-	httpClient := http.DefaultClient
+	httpClient := c.config.HTTPClient
 	resp, err := httpClient.Do(req)
 	if err != nil {
 		return nil, err
@@ -57,7 +57,7 @@ func (c *ApiClient) GetContext(name, sessionId string) (*Context, error) {
 	req.Header.Set("Content-type", "application/json; charset=utf-8")
 	req.Header.Set("Authorization", "Bearer "+c.config.Token)
 
-	httpClient := http.DefaultClient
+	httpClient := c.config.HTTPClient
 	resp, err := httpClient.Do(req)
 	if err != nil {
 		return nil, err
@@ -95,7 +95,7 @@ func (c *ApiClient) CreateContext(context Context, sessionId string) error {
 	req.Header.Set("Content-type", "application/json; charset=utf-8")
 	req.Header.Set("Authorization", "Bearer "+c.config.Token)
 
-	httpClient := http.DefaultClient
+	httpClient := c.config.HTTPClient
 	resp, err := httpClient.Do(req)
 	if err != nil {
 		return err
@@ -121,7 +121,7 @@ func (c *ApiClient) DeleteContexts(sessionId string) error {
 	req.Header.Set("Content-type", "application/json; charset=utf-8")
 	req.Header.Set("Authorization", "Bearer "+c.config.Token)
 
-	httpClient := http.DefaultClient
+	httpClient := c.config.HTTPClient
 	resp, err := httpClient.Do(req)
 	if err != nil {
 		return err
@@ -147,7 +147,7 @@ func (c *ApiClient) DeleteContext(name, sessionId string) error {
 	req.Header.Set("Content-type", "application/json; charset=utf-8")
 	req.Header.Set("Authorization", "Bearer "+c.config.Token)
 
-	httpClient := http.DefaultClient
+	httpClient := c.config.HTTPClient
 	resp, err := httpClient.Do(req)
 	if err != nil {
 		return err

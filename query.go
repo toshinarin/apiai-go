@@ -115,7 +115,7 @@ func (c *ApiClient) Query(q Query) (*QueryResponse, error) {
 	req.Header.Set("Content-type", "application/json, charset=utf-8")
 	req.Header.Set("Authorization", "Bearer "+c.config.Token)
 
-	httpClient := http.DefaultClient
+	httpClient := c.config.HTTPClient
 	resp, err := httpClient.Do(req)
 	if err != nil {
 		return nil, err

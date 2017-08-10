@@ -2,6 +2,7 @@ package apiai
 
 import (
 	"fmt"
+	"net/http"
 	"net/url"
 )
 
@@ -18,6 +19,7 @@ type ClientConfig struct {
 	Version    string //YYYYMMDD
 	QueryLang  string
 	SpeechLang string
+	HTTPClient *http.Client
 }
 
 type ApiClient struct {
@@ -60,6 +62,9 @@ func NewClient(conf *ClientConfig) (*ApiClient, error) {
 	}
 	if conf.SpeechLang == "" {
 		conf.SpeechLang = defaultSpeechLang
+	}
+	if conf.HTTPClient == nil {
+		conf.HTTPClient = http.DefaultClient
 	}
 	if !languageAvailable(conf.QueryLang, queryLang) {
 		return nil, fmt.Errorf("%v", "You have to provide a valid query language, see https://docs.api.ai/docs/languages")
